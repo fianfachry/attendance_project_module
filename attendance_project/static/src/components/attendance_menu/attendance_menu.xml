@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="attendance_project.attendance_menu_inherit" t-inherit="hr_attendance.attendance_menu" t-inherit-mode="extension">
+        <xpath expr="//div[hasclass('o_att_menu_container')]/div/div[1]" position="after">
+            <div class="d-flex flex-wrap gap-3">
+                <div class="att_container flex-grow-1 flex-shrink-0">
+                    <strong class="d-block text-muted">Project</strong>
+                    <select t-on-change="onProjectChange" t-att-disabled="this.state.checkedIn">
+                        <option value="" >
+                            Select Project ...
+                        </option>
+                        <t t-foreach="this.state.projects"  t-as="project" t-key="project.id">
+                            <option t-att-value="project.id" t-att-selected="project.id == this.state.currentProject" >
+                                <t t-esc="project.name"/>
+                            </option>
+                        </t>
+                    </select>
+                </div>
+            </div>
+            <div class="d-flex flex-wrap gap-3">
+                <div class="att_container flex-grow-1 flex-shrink-0">
+                    <strong class="d-block text-muted">Task</strong>
+                    <select t-on-change="onTaskChange" t-att-disabled="this.state.checkedIn">
+                        <option value="" >
+                            Select Task ...
+                        </option>
+                        <t t-foreach="this.state.tasks"  t-as="task" t-key="task.id">
+                            <option t-att-value="task.id" t-att-selected="task.id == this.state.currentTask" >
+                                <t t-esc="task.name"/>
+                            </option>
+                        </t>
+                    </select>
+                </div>
+            </div>
+            <div class="d-flex flex-wrap gap-3">
+                <div class="att_container flex-grow-1 flex-shrink-0">
+                    <strong class="d-block text-muted">Description</strong>
+                    <input type="text" t-model="state.description" t-att-disabled="this.state.checkedIn"/>
+                </div>
+            </div>
+        </xpath>
+    </t>
+</templates>
